@@ -52,11 +52,30 @@ class LeaveSale(models.Model):
             if rec.sale_amount <= 0:
                 raise UserError(_("Sale Amount must be calculated and greater than 0."))
 
+            # Check if the employee has enough remaining leaves
+            if rec.days_to_sell > rec.annual_leave_days:
+                raise UserError(_("You cannot sell more days than your remaining annual leave."))
+
+            # Get the annual leave type
+            annual_leave = self.env['hr.leave.type'].search([('is_annual_leave', '=', True)], limit=1)
+
+            allocations = self.env['hr.leave.allocation'].with_context(active_test=False).search([
+                ('employee_id', '=', rec.employee_id.id),
+                ('holiday_status_id', '=', annual_leave.id),
+                ('state', '=', 'validate'),
+            ]).filtered(lambda al: al.active or not al.employee_id.active)
+
+            for allocation in allocations:
+                allocation.number_of_days -= rec.days_to_sell
+                print("**********************************************", allocation.number_of_days)
+            # Deduct the days sold from the employee's annual leave days
+            rec.employee_id.remaining_leaves -= rec.days_to_sell
+
             # Create a receipt for the employee
             self._create_receipt()
 
             rec.state = 'approved'
-            rec.message_post(body="Leave sale request approved and receipt created.")
+            rec.message_post(body="Leave sale request approved, days deducted, and receipt created.")
 
     def action_reject(self):
         for rec in self:
