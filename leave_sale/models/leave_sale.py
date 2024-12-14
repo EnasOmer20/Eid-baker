@@ -67,7 +67,6 @@ class LeaveSale(models.Model):
 
             for allocation in allocations:
                 allocation.number_of_days -= rec.days_to_sell
-                print("**********************************************", allocation.number_of_days)
             # Deduct the days sold from the employee's annual leave days
             rec.employee_id.remaining_leaves -= rec.days_to_sell
 
