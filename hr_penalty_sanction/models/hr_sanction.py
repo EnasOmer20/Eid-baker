@@ -90,3 +90,8 @@ class HRPenalSanction(models.Model):
         if self.env.user != self.hr_manager_id:
             raise UserError(_("Only the HR Manager can confirm this record."))
         self.write({'state': 'hr_confirmed'})
+
+        # Trigger Email Notification
+        template = self.env.ref('hr_penalty_sanction.hr_penalty_notification_email_template')
+        if template:
+            template.send_mail(self.id, force_send=True)

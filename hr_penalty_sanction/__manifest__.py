@@ -14,6 +14,8 @@
         'views/hr_department_views.xml',
         'data/hr_payslip_rules.xml',
         'data/sequence.xml',
+        'data/hr_penalty_notification_email_template.xml',
+        'reports/hr_penalty_notification_report.xml',
     ],
     'installable': True,
     'application': True,
