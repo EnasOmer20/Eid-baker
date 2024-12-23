@@ -11,8 +11,6 @@ class HREmployeePayslip(models.Model):
         # Call the parent create method to ensure the payslip is created
         payslip = super(HREmployeePayslip, self).create(vals)
 
-        penal_input_type_id = self.env['hr.payslip.input.type'].search([('code', '=', 'PSD')], limit=1).id
-
         penal_sanctions = self.env['hr.penal.sanction'].search([
             ('employee_id', '=', payslip.employee_id.id),
             ('date', '<=', payslip.date_to),
@@ -27,16 +25,17 @@ class HREmployeePayslip(models.Model):
                 if sanction.stage_id.deduction_type == 'fixed':
                     self.env['hr.payslip.input'].create({
                         'payslip_id': payslip.id,
-                        'input_type_id': penal_input_type_id,
+                        'code': "PSD",
                         'name': 'Penal Sanction: ' + sanction.violation_id.name,
                         'amount': sanction.amount,
                     })
                 elif sanction.stage_id.deduction_type == 'per_day':
                     self.env['hr.payslip.input'].create({
                         'payslip_id': payslip.id,
-                        'input_type_id': penal_input_type_id,
+                        'code': "PSD",
+                        'contract_id': payslip.contract_id.id,
                         'name': 'Penal Sanction: ' + sanction.violation_id.name,
-                        'amount': payslip.contract_id.wage / 30 ,
+                        'amount': payslip.contract_id.wage / payslip.contract_id.working_hours_per_day ,
                     })
 
         return payslip

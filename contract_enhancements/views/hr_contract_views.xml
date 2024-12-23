@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="hr_contract_form" model="ir.ui.view">
+        <field name="name">hr.contract.view</field>
+        <field name="model">hr.contract</field>
+        <field name="inherit_id" ref="hr_contract.hr_contract_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//group[@name='salary']" position="inside">
+                <label for="working_days_per_month"/>
+                <div class="o_row" name="working_days_per_month">
+                    <field name="working_days_per_month" nolabel="1"/>
+                    <span>Days / Month</span>
+                </div>
+                <label for="working_hours_per_day"/>
+                <div class="o_row" name="working_hours_per_day">
+                    <field name="working_hours_per_day" nolabel="1"/>
+                    <span>Hours / Day</span>
+                </div>
+            </xpath>
+        </field>
+    </record>
+</odoo>
+
+

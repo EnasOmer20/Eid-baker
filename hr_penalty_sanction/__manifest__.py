@@ -4,7 +4,7 @@
     'category': 'Human Resources',
     'summary': 'Manage penal sanctions, stages, and violations for employees.',
     'author': 'Einas Omer',
-    'depends': ['hr','hr_payroll'],
+    'depends': ['hr','om_hr_payroll','contract_enhancements'],
     'data': [
         'security/ir.model.access.csv',
         'views/hr_sanction_views.xml',

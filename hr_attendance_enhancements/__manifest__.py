@@ -10,7 +10,7 @@
         - Automatically calculates payslip rules for deductions and overtime.
     """,
     'author': 'Einas Omer',
-    'depends': ['hr', 'hr_payroll', 'hr_attendance'],
+    'depends': ['hr', 'om_hr_payroll', 'hr_attendance'],
     'data': [
         'security/ir.model.access.csv',
         'data/hr_payslip_rules.xml',

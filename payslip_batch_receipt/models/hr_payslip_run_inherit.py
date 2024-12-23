@@ -10,10 +10,10 @@ class HrPayslip(models.Model):
 class HrPayslipRun(models.Model):
     _inherit = 'hr.payslip.run'
 
-    def action_validate(self):
+    def done_payslip_run(self):
         """Override to generate an out_receipt when batch is validated."""
         # Call the super to keep the original behavior
-        super(HrPayslipRun, self).action_validate()
+        super(HrPayslipRun, self).done_payslip_run()
 
         account_move_obj = self.env['account.move']
         for payslip in self.slip_ids:
