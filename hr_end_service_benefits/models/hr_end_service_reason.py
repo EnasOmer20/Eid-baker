@@ -7,6 +7,7 @@ class HrEndServiceReason(models.Model):
     name = fields.Char(string="Reason", required=True)
     deserved_after = fields.Float(string="Deserved After", required=True)
     zero_message = fields.Char(string="Zero Message", required=True)
+    is_partial = fields.Boolean(string="Is Partial", required=True)
     line_ids = fields.One2many('hr.end.service.reason.line', 'reason_id', string="Reason Line")
 
 class HrEndServiceReasonLine(models.Model):

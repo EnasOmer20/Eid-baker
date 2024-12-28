@@ -13,6 +13,7 @@
         'views/res_config_settings_views.xml',
         'views/hr_employee_views.xml',
         'data/sequence.xml',
+        'reports/hr_end_service_report.xml',
     ],
     'installable': True,
     'application': True,
