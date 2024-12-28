@@ -172,7 +172,7 @@ class HREndServiceRequest(models.Model):
                 lambda p: rec.employee_id.id in p.employee_ids.ids).id or False
 
             if not partner_id:
-                raise UserError(_("The employee does not have a home address set to generate the receipt."))
+                raise UserError(_("The employee does not have partner set to generate the receipt."))
 
             journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
             if not journal:

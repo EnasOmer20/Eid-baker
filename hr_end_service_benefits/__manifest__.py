@@ -5,7 +5,7 @@
     'description': 'Module to manage employee end-of-service requests and benefits',
     'category': 'Human Resources',
     'author': 'Einas Omer',
-    'depends': ['hr', 'hr_contract','contract_enhancements', 'om_hr_payroll', 'account', 'mail'],
+    'depends': ['hr', 'hr_contract','contract_enhancements','hr_holidays', 'om_hr_payroll', 'account', 'mail'],
     'data': [
         'security/ir.model.access.csv',
         'views/hr_end_of_service_views.xml',

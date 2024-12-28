@@ -38,7 +38,8 @@ class LeaveSale(models.Model):
     @api.depends('days_to_sell')
     def _compute_sale_amount(self):
         for rec in self:
-            rec.sale_amount = rec.days_to_sell * rec.employee_id.contract_id.wage / 30  # Example calculation
+            working_days_per_month = rec.employee_id.contract_id.working_days_per_month
+            rec.sale_amount = rec.days_to_sell * rec.employee_id.contract_id.wage / working_days_per_month if working_days_per_month > 0 else 1  # Example calculation
 
     def action_submit(self):
         for rec in self:
@@ -87,7 +88,7 @@ class LeaveSale(models.Model):
             partner_id = self.env['res.partner'].sudo().search([]).filtered(lambda p: rec.employee_id.id in p.employee_ids.ids).id or False
 
             if not partner_id:
-                raise UserError(_("The employee does not have a home address set to generate the receipt."))
+                raise UserError(_("The employee does not have a partner set to generate the receipt."))
 
             journal = self.env['account.journal'].search([('type', '=', 'sale')], limit=1)
             if not journal:

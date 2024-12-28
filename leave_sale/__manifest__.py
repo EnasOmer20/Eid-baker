@@ -5,7 +5,7 @@
     'summary': 'Module to allow employees to sell leave days',
     'description': 'Manage employee leave sale requests with approval levels.',
     'author': 'Einas Omer',
-    'depends': ['hr','hr_holidays','hr_contract'],
+    'depends': ['hr','hr_holidays','hr_contract','contact_enhancements','account'],
     'data': [
         'security/ir.model.access.csv',
         'views/leave_sale_views.xml',
