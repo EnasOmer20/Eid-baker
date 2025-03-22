@@ -1,0 +1,27 @@
+<odoo>
+    <record id="hr_employee_config_settings_view_form" model="ir.ui.view">
+        <field name="name">hr.employee.config.settings.view.form</field>
+        <field name="model">res.config.settings</field>
+        <field name="inherit_id" ref="hr.res_config_settings_view_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//block[@name='employees_setting_container']" position="inside">
+                <setting id="app_settings_block" string="Employee Document Expiry Settings">
+                    <div class="content-group" name="hr_documents_expiry">
+                        <div class="d-flex">
+                            <label for="notify_days_health_certificate" class="o_light_label"/>
+                            <field name="notify_days_health_certificate" class="ml16"/>
+                        </div>
+                        <div class="d-flex">
+                            <label for="notify_days_work_permit" class="o_light_label"/>
+                            <field name="notify_days_work_permit" class="ml16"/>
+                        </div>
+                        <div class="d-flex">
+                            <label for="notify_days_health_insurance" class="o_light_label"/>
+                            <field name="notify_days_health_insurance" class="ml16"/>
+                        </div>
+                    </div>
+                </setting>
+            </xpath>
+        </field>
+    </record>
+</odoo>

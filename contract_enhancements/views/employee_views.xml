@@ -1,0 +1,17 @@
+<odoo>
+    <record id="hr_employee_view_form_inherit" model="ir.ui.view">
+        <field name="name">hr.employee.view.form.inherit</field>
+        <field name="model">hr.employee</field>
+        <field name="inherit_id" ref="hr.view_employee_form"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='country_of_birth']" position="after">
+                <field name="health_certificate_expiry"/>
+                <field name="health_certificate_name" invisible="1"/>
+                <field name="health_certificate" filename="health_certificate_name"/>
+                <field name="health_insurance_expiry"/>
+                <field name="health_insurance_name" invisible="1"/>
+                <field name="health_insurance" filename="health_insurance_name"/>
+            </xpath>
+        </field>
+    </record>
+</odoo>

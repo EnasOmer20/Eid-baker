@@ -27,6 +27,7 @@ class HrContract(models.Model):
     hra = fields.Monetary(string='HRA', help="House rent allowance.")
     travel_allowance = fields.Monetary(string="Travel Allowance", help="Travel allowance")
     da = fields.Monetary(string="DA", help="Dearness allowance")
+    social_insurance = fields.Monetary(string="Social Insurance", help="Social insurance")
     meal_allowance = fields.Monetary(string="Meal Allowance", help="Meal allowance")
     medical_allowance = fields.Monetary(string="Medical Allowance", help="Medical allowance")
     other_allowance = fields.Monetary(string="Other Allowance", help="Other allowances")
