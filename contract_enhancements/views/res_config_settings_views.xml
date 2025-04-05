@@ -19,6 +19,11 @@
                             <label for="notify_days_health_insurance" class="o_light_label"/>
                             <field name="notify_days_health_insurance" class="ml16"/>
                         </div>
+
+                        <div class="d-flex">
+                            <label for="notify_days_contract" class="o_light_label"/>
+                            <field name="notify_days_contract" class="ml16"/>
+                        </div>
                     </div>
                 </setting>
             </xpath>

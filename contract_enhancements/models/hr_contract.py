@@ -19,7 +19,8 @@ class HrContract(models.Model):
         def check_contract_expiry(self):
             """Notify the employee and their manager via email and internal message before contract expiration"""
             today = fields.Date.today()
-            notify_days_before = self.env.company.contract_expiration_notice_period
+            config = self.env['ir.config_parameter'].sudo()
+            notify_days_before = int(config.get_param('hr_contract.notify_days_contract',default=30))
 
             contracts = self.search([
                 ('date_end', '!=', False),
