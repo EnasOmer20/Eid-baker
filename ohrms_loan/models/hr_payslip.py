@@ -42,7 +42,8 @@ class HrPayslip(models.Model):
             contract_ids[0].id).employee_id if contract_ids \
             else self.employee_id
         loan_id = self.env['hr.loan'].search(
-            [('employee_id', '=', employee_id.id), ('state', '=', 'approve')])
+            [('employee_id', '=', employee_id.id), ('state', 'in', ['approve','done'])])
+        print("**********************************************", loan_id)
         for loan in loan_id:
             for loan_line in loan.loan_lines:
                 if (date_from <= loan_line.date <= date_to and

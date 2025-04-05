@@ -7,6 +7,6 @@
             <field name="category_id" ref="om_hr_payroll.DED"/>
             <field name="condition_select">none</field>
             <field name="amount_select">code</field>
-            <field name="amount_python_compute">result =  - inputs['PSD'].amount</field>
+            <field name="amount_python_compute">result =  inputs.PSD and - inputs.PSD.amount</field>
         </record>
 </odoo>
