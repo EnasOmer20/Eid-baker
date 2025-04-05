@@ -9,4 +9,15 @@
         <field name="numbercall">-1</field>
         <field name="active" eval="True"/>
     </record>
+
+    <record id="ir_cron_check_contract_expiry" model="ir.cron">
+        <field name="name">Check Employee Contract Expiry</field>
+        <field name="model_id" ref="hr_contract.model_hr_contract"/>
+        <field name="state">code</field>
+        <field name="code">model.check_contract_expiry()</field>
+        <field name="interval_type">days</field>
+        <field name="interval_number">1</field>
+        <field name="numbercall">-1</field>
+        <field name="active" eval="True"/>
+    </record>
 </odoo>
